@@ -22,8 +22,10 @@ fn parse_input(file_path: &str) -> (Vec<i32>, Vec<i32>) {
         let nums: Vec<i32> = line.split_whitespace().map(|item| {
             item.parse::<i32>().expect(&format!("Invalid input. {} is not a number.", item))
         }).collect();
-        left_list.push(nums[0]);
-        right_list.push(nums[1]);
+        if nums.len() == 2 {
+            left_list.push(nums[0]);
+            right_list.push(nums[1]);
+        }
     });
     left_list.sort();
     right_list.sort();
