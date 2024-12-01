@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 
 fn main() {
     let args: Vec<String> = std::env::args().collect();
@@ -9,8 +11,10 @@ fn main() {
             parse_input("./src/bin/day1/input.txt")
         }
     };
-    let sum = sum_of_distances(left_list, right_list);
-    println!("{}", sum);
+    let sum = sum_of_distances(&left_list, &right_list);
+    let simularity = simularity_score(&left_list, &right_list);
+    println!("Sum of distances: {}", sum);
+    println!("Simularity score: {}", simularity);
 }
 
 fn parse_input(file_path: &str) -> (Vec<i32>, Vec<i32>) {
@@ -32,8 +36,16 @@ fn parse_input(file_path: &str) -> (Vec<i32>, Vec<i32>) {
     (left_list, right_list)
 }
 
-fn sum_of_distances(left_list: Vec<i32>, right_list: Vec<i32>) -> i32 {
+fn sum_of_distances(left_list: &Vec<i32>, right_list: &Vec<i32>) -> i32 {
     left_list.into_iter().zip(right_list).map(|(left, right)| (left - right).abs()).sum()
+}
+
+fn simularity_score(left_list: &Vec<i32>, right_list: &Vec<i32>) -> i32 {
+    let mut counts: HashMap<i32, i32> = HashMap::new();
+    right_list.into_iter().for_each(|num| {
+        counts.insert(*num, counts.get(num).unwrap_or(&0) + 1);
+    });
+    left_list.into_iter().map(|num| num * counts.get(num).unwrap_or(&0)).sum()
 }
 
 #[cfg(test)]
@@ -45,7 +57,14 @@ mod tests {
     fn test_sum_of_distances() {
         let left_list = vec![1, 2, 3, 3, 3, 4];
         let right_list = vec![3, 3, 3, 4, 5, 9];
-        assert_eq!(sum_of_distances(left_list, right_list), 11);
+        assert_eq!(sum_of_distances(&left_list, &right_list), 11);
+    }
+
+    #[test]
+    fn test_simularity_score() {
+        let left_list = vec![1, 2, 3, 3, 3, 4];
+        let right_list = vec![3, 3, 3, 4, 5, 9];
+        assert_eq!(simularity_score(&left_list, &right_list), 31);
     }
 
     #[test]
