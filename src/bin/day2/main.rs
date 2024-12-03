@@ -35,11 +35,8 @@ fn count_safe_reports(reports: &Vec<Vec<i32>>) -> usize {
  */
 fn is_safe(report: &Vec<i32>) -> bool {
     let differences: Vec<i32> = report.windows(2).map(|window| window[0] - window[1]).collect();
-    let all_positive = differences.iter().all(|difference| difference.is_positive());
-    let all_in_positive_range = differences.iter().all(|difference| (1..=3).contains(difference));
-    let all_negative = differences.iter().all(|difference| difference.is_negative());
-    let all_in_negative_range = differences.iter().all(|difference| (-3..=-1).contains(difference));
-    (all_positive && all_in_positive_range) || (all_negative && all_in_negative_range)
+    (differences.iter().all(|difference| difference.is_positive() && (1..=3).contains(difference))) ||
+    (differences.iter().all(|difference| difference.is_negative() && (-3..=-1).contains(difference)))
 }
 
 fn count_safe_reports_dampened(reports: &Vec<Vec<i32>>) -> usize {
