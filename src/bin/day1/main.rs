@@ -37,7 +37,7 @@ fn parse_input(file_path: &str) -> (Vec<i32>, Vec<i32>) {
 }
 
 fn sum_of_distances(left_list: &Vec<i32>, right_list: &Vec<i32>) -> i32 {
-    left_list.into_iter().zip(right_list).map(|(left, right)| (left - right).abs()).sum()
+    left_list.iter().zip(right_list).map(|(left, right)| (left - right).abs()).sum()
 }
 
 fn simularity_score(left_list: &Vec<i32>, right_list: &Vec<i32>) -> i32 {
@@ -45,13 +45,21 @@ fn simularity_score(left_list: &Vec<i32>, right_list: &Vec<i32>) -> i32 {
     right_list.into_iter().for_each(|num| {
         counts.insert(*num, counts.get(num).unwrap_or(&0) + 1);
     });
-    left_list.into_iter().map(|num| num * counts.get(num).unwrap_or(&0)).sum()
+    left_list.iter().map(|num| num * counts.get(num).unwrap_or(&0)).sum()
 }
 
 #[cfg(test)]
 mod tests {
     use std::vec;
     use super::*;
+
+    #[test]
+    fn test_parse_file() {
+        let file_path = "./src/bin/day1/sample_input.txt";
+        let left_list = vec![1, 2, 3, 3, 3, 4];
+        let right_list = vec![3, 3, 3, 4, 5, 9];
+        assert_eq!(parse_input(file_path), (left_list, right_list));
+    }
 
     #[test]
     fn test_sum_of_distances() {
@@ -65,13 +73,5 @@ mod tests {
         let left_list = vec![1, 2, 3, 3, 3, 4];
         let right_list = vec![3, 3, 3, 4, 5, 9];
         assert_eq!(simularity_score(&left_list, &right_list), 31);
-    }
-
-    #[test]
-    fn test_parse_file() {
-        let file_path = "./src/bin/day1/sample_input.txt";
-        let left_list = vec![1, 2, 3, 3, 3, 4];
-        let right_list = vec![3, 3, 3, 4, 5, 9];
-        assert_eq!(parse_input(file_path), (left_list, right_list));
     }
 }
