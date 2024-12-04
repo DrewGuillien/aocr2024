@@ -38,7 +38,6 @@ fn conditional_interpret(instructions: &str) -> i32 {
     let new_instructions = Regex::new(r"(?s)(don't\(\).*?(?:do\(\)|$))")
         .unwrap()
         .replace_all(instructions, "");
-    println!("New instructions: {:?}", new_instructions);
     interpret(&new_instructions)
 }
 
