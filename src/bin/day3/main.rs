@@ -10,8 +10,10 @@ fn main() {
             parse_input("./src/bin/day3/input.txt")
         }
     };
+    // Part 1
     let value = interpret(&instructions);
     println!("{}", value);
+    // Part 2
     let new_value = conditional_interpret(&instructions);
     println!("{}", new_value);
 }
