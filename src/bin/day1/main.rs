@@ -2,15 +2,7 @@ use std::collections::HashMap;
 
 
 fn main() {
-    let args: Vec<String> = std::env::args().collect();
-    let (left_list, right_list) = match args.len() {
-        2 => {
-            parse_input(&args[1])
-        }
-        _ => {
-            parse_input("./src/bin/day1/input.txt")
-        }
-    };
+    let (left_list, right_list) = parse_input("./src/bin/day1/input.txt");
     let sum = sum_of_distances(&left_list, &right_list);
     let simularity = simularity_score(&left_list, &right_list);
     println!("Sum of distances: {}", sum);

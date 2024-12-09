@@ -1,15 +1,7 @@
 use std::{cmp::Ordering, collections::{HashMap, HashSet}};
 
 fn main() {
-    let args: Vec<String> = std::env::args().collect();
-    let (rules, updates) = match args.len() {
-        2 => {
-            parse_input(&args[1])
-        }
-        _ => {
-            parse_input("./src/bin/day5/input.txt")
-        }
-    };
+    let (rules, updates) = parse_input("./src/bin/day5/input.txt");
     let (valid, invalid) = split_valid_and_invalid_updates(&rules, &updates);
     // Part 1
     let middle_valid_sum = sum_of_middle_updates(&valid);

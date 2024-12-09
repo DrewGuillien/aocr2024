@@ -1,15 +1,7 @@
 use std::f32::consts::PI;
 
 fn main() {
-    let args: Vec<String> = std::env::args().collect();
-    let grid = match args.len() {
-        2 => {
-            parse_input(&args[1])
-        }
-        _ => {
-            parse_input("./src/bin/day4/input.txt")
-        }
-    };
+    let grid = parse_input("./src/bin/day4/input.txt");
     // Part 1
     let xmas_count = count_of_xmas(&grid);
     println!("XMAS count: {}", xmas_count);

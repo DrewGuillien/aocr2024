@@ -1,14 +1,6 @@
 
 fn main() {
-    let args: Vec<String> = std::env::args().collect();
-    let reports = match args.len() {
-        2 => {
-            parse_input(&args[1])
-        }
-        _ => {
-            parse_input("./src/bin/day2/input.txt")
-        }
-    };
+    let reports = parse_input("./src/bin/day2/input.txt");
     let counts = count_safe_reports(&reports);
     let counts_with_dampener = count_safe_reports_dampened(&reports);
     println!("{}", counts);

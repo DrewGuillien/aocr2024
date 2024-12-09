@@ -1,15 +1,7 @@
 use regex::Regex;
 
 fn main() {
-    let args: Vec<String> = std::env::args().collect();
-    let instructions = match args.len() {
-        2 => {
-            parse_input(&args[1])
-        }
-        _ => {
-            parse_input("./src/bin/day3/input.txt")
-        }
-    };
+    let instructions = parse_input("./src/bin/day3/input.txt");
     // Part 1
     let value = interpret(&instructions);
     println!("{}", value);
