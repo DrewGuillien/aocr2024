@@ -1,6 +1,5 @@
 use std::collections::HashMap;
 
-
 fn main() {
     let (left_list, right_list) = parse_input("./src/bin/day1/input.txt");
     let sum = sum_of_distances(&left_list, &right_list);
@@ -42,7 +41,6 @@ fn simularity_score(left_list: &Vec<i32>, right_list: &Vec<i32>) -> i32 {
 
 #[cfg(test)]
 mod tests {
-    use std::vec;
     use super::*;
 
     #[test]

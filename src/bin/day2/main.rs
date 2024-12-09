@@ -47,7 +47,6 @@ fn is_safe_dampened(report: &Vec<i32>) -> bool {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use std::vec;
 
     #[test]
     fn test_parse_input() {
