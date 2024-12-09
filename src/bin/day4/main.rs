@@ -10,7 +10,7 @@ fn main() {
             parse_input("./src/bin/day4/input.txt")
         }
     };
-    // // Part 1
+    // Part 1
     let xmas_count = count_of_xmas(&grid);
     println!("XMAS count: {}", xmas_count);
     // Part 2
