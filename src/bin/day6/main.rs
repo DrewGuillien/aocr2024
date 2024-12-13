@@ -9,6 +9,7 @@ fn main() {
     let unique_position_count = area.how_many_distinct_positions();
     // Part 1
     println!("Unique positions: {}", unique_position_count);
+    // Part 2
     let unique_obstacles = area.how_many_unique_new_obstacles_cause_a_loop();
     println!("Unique obstacle count: {}", unique_obstacles);
 }
