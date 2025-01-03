@@ -1,7 +1,7 @@
 use std::{cmp::Ordering, collections::{HashMap, HashSet}};
 
 fn main() {
-    let (rules, updates) = parse_input("./src/bin/day5/input.txt");
+    let (rules, updates) = parse_input("./src/bin/day05/input.txt");
     let (valid, invalid) = split_valid_and_invalid_updates(&rules, &updates);
     // Part 1
     let middle_valid_sum = sum_of_middle_updates(&valid);
@@ -113,7 +113,7 @@ mod test {
             vec![97,13,75,29,47]
         ];
 
-        assert_eq!(parse_input("./src/bin/day5/sample_input.txt"), (rules, updates));
+        assert_eq!(parse_input("./src/bin/day05/sample_input.txt"), (rules, updates));
     }
 
     #[test]

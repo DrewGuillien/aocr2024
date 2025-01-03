@@ -5,7 +5,7 @@ use aocr2024::read_file_to_string;
 mod antenna_map;
 
 fn main() {
-    let map = parse_input("./src/bin/day8/input.txt");
+    let map = parse_input("./src/bin/day08/input.txt");
     let antinode_count = map.count_all_antinodes_in_bounds();
     println!("Antinode count: {}", antinode_count);
     let resonant_antinode_count = map.count_all_antinodes_with_resonant_harmonics_in_bounds();
@@ -52,13 +52,13 @@ mod tests {
 
     #[test]
     fn test_sample_input() {
-        let map = parse_input("./src/bin/day8/sample_input.txt");
+        let map = parse_input("./src/bin/day08/sample_input.txt");
         assert_eq!(map.count_all_antinodes_in_bounds(), 14);
     }
 
     #[test]
     fn test_sample_input_resonant_harmonics() {
-        let map = parse_input("./src/bin/day8/sample_input.txt");
+        let map = parse_input("./src/bin/day08/sample_input.txt");
         assert_eq!(map.count_all_antinodes_with_resonant_harmonics_in_bounds(), 34);
     }
 }

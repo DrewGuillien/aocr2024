@@ -85,7 +85,7 @@ mod tests {
 
     #[test]
     fn test_sample_input_with_plus_and_multiply_and_concatonate() {
-        let equations: Vec<CalibrationEquation> = read_file_to_string("./src/bin/day7/sample_input.txt")
+        let equations: Vec<CalibrationEquation> = read_file_to_string("./src/bin/day07/sample_input.txt")
             .split("\n")
             .map(|line| line.into())
             .collect();        

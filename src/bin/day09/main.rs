@@ -8,13 +8,13 @@ struct FileBlock {
 
 fn main() {
     // Part 1
-    let blocks = parse_input("./src/bin/day9/input.txt");
+    let blocks = parse_input("./src/bin/day09/input.txt");
     let compacted_blocks = compact_blocks(&blocks);
     let checksum = compute_checksum(compacted_blocks);
     println!("Checksum: {}", checksum);
 
     // Part 2
-    let blocks = parse_input("./src/bin/day9/input.txt");
+    let blocks = parse_input("./src/bin/day09/input.txt");
     let compacted_files = compact_files(&blocks);
     let checksum = compute_checksum(compacted_files);
     println!("Checksum: {}", checksum);
@@ -146,7 +146,7 @@ mod tests {
             FileBlock { id: 9, position: 40 },
             FileBlock { id: 9, position: 41 },
         ];
-        assert_eq!(parse_input("./src/bin/day9/sample_input.txt"), expected);
+        assert_eq!(parse_input("./src/bin/day09/sample_input.txt"), expected);
     }
 
     #[test]
@@ -324,7 +324,7 @@ mod tests {
 
     #[test]
     fn test_sample_input_part_1() {
-        let blocks = parse_input("./src/bin/day9/sample_input.txt");
+        let blocks = parse_input("./src/bin/day09/sample_input.txt");
         let compacted_blocks = compact_blocks(&blocks);
         let checksum = compute_checksum(compacted_blocks);
         assert_eq!(checksum, 1928);
@@ -332,7 +332,7 @@ mod tests {
 
     #[test]
     fn test_sample_input_part_2() {
-        let blocks = parse_input("./src/bin/day9/sample_input.txt");
+        let blocks = parse_input("./src/bin/day09/sample_input.txt");
         let compacted_blocks = compact_files(&blocks);
         let checksum = compute_checksum(compacted_blocks);
         assert_eq!(checksum, 2858);

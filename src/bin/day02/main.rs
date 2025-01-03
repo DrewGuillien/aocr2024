@@ -1,9 +1,11 @@
 
 fn main() {
-    let reports = parse_input("./src/bin/day2/input.txt");
+    let reports = parse_input("./src/bin/day02/input.txt");
+    // Part 1
     let counts = count_safe_reports(&reports);
-    let counts_with_dampener = count_safe_reports_dampened(&reports);
     println!("{}", counts);
+    // Part 2
+    let counts_with_dampener = count_safe_reports_dampened(&reports);
     println!("{}", counts_with_dampener);
 }
 
@@ -50,7 +52,7 @@ mod tests {
 
     #[test]
     fn test_parse_input() {
-        let file_path = "./src/bin/day2/sample_input.txt";
+        let file_path = "./src/bin/day02/sample_input.txt";
         let reports = vec![
             vec![7, 6, 4, 2, 1],
             vec![1, 2, 7, 8, 9],

@@ -1,7 +1,7 @@
 use regex::Regex;
 
 fn main() {
-    let instructions = parse_input("./src/bin/day3/input.txt");
+    let instructions = parse_input("./src/bin/day03/input.txt");
     // Part 1
     let value = interpret(&instructions);
     println!("{}", value);
@@ -42,7 +42,7 @@ mod tests {
     #[test]
     fn test_parse_input() {
         let expected = "xmul(2,4)%&mul[3,7]!@^do_not_mul(5,5)+mul(32,64]then(mul(11,8)mul(8,5))";
-        assert_eq!(parse_input("./src/bin/day3/sample_input.txt"), expected);
+        assert_eq!(parse_input("./src/bin/day03/sample_input.txt"), expected);
     }
 
     #[test]

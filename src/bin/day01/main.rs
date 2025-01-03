@@ -1,10 +1,13 @@
 use std::collections::HashMap;
 
 fn main() {
-    let (left_list, right_list) = parse_input("./src/bin/day1/input.txt");
+    let (left_list, right_list) = parse_input("./src/bin/day01/input.txt");
+
+    // Part 1
     let sum = sum_of_distances(&left_list, &right_list);
-    let simularity = simularity_score(&left_list, &right_list);
     println!("Sum of distances: {}", sum);
+    // Part 2
+    let simularity = simularity_score(&left_list, &right_list);
     println!("Simularity score: {}", simularity);
 }
 
@@ -45,7 +48,7 @@ mod tests {
 
     #[test]
     fn test_parse_file() {
-        let file_path = "./src/bin/day1/sample_input.txt";
+        let file_path = "./src/bin/day01/sample_input.txt";
         let left_list = vec![1, 2, 3, 3, 3, 4];
         let right_list = vec![3, 3, 3, 4, 5, 9];
         assert_eq!(parse_input(file_path), (left_list, right_list));

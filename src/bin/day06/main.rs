@@ -5,7 +5,7 @@ mod area;
 
 fn main() {
     // Most of the code is in `./src/bin/day6/area.rs`
-    let mut area = parse_input("./src/bin/day6/input.txt");
+    let mut area = parse_input("./src/bin/day06/input.txt");
     let unique_position_count = area.how_many_distinct_positions();
     // Part 1
     println!("Unique positions: {}", unique_position_count);
@@ -26,7 +26,7 @@ mod test {
 
     #[test]
     fn test_sample_input_part_1() {
-        let input = read_to_string("./src/bin/day6/sample_input.txt")
+        let input = read_to_string("./src/bin/day06/sample_input.txt")
             .unwrap();
         let mut area: Area = input.into();
         assert_eq!(area.how_many_distinct_positions(), 41);
@@ -34,7 +34,7 @@ mod test {
 
     #[test]
     fn test_sample_input_part_2() {
-        let input = read_to_string("./src/bin/day6/sample_input.txt")
+        let input = read_to_string("./src/bin/day06/sample_input.txt")
             .unwrap();
         let mut area: Area = input.into();
         assert_eq!(area.how_many_unique_new_obstacles_cause_a_loop(), 6);

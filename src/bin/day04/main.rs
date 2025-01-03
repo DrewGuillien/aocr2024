@@ -1,7 +1,7 @@
 use std::f32::consts::PI;
 
 fn main() {
-    let grid = parse_input("./src/bin/day4/input.txt");
+    let grid = parse_input("./src/bin/day04/input.txt");
     // Part 1
     let xmas_count = count_of_xmas(&grid);
     println!("XMAS count: {}", xmas_count);
@@ -101,7 +101,7 @@ mod tests {
             vec!['M', 'A', 'M', 'M', 'M', 'X', 'M', 'M', 'M', 'M'],
             vec!['M', 'X', 'M', 'X', 'A', 'X', 'M', 'A', 'S', 'X']
         ];
-        assert_eq!(parse_input("./src/bin/day4/sample_input.txt"), grid);
+        assert_eq!(parse_input("./src/bin/day04/sample_input.txt"), grid);
     }
 
     #[test]

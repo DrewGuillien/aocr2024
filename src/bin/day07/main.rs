@@ -4,7 +4,7 @@ use equation::{CalibrationEquation, Operator};
 mod equation;
 
 fn main() {
-    let equations = parse_input("./src/bin/day7/input.txt");
+    let equations = parse_input("./src/bin/day07/input.txt");
     // Part 1
     let calibration_result: u64 = equations.iter()
         .filter(|equation| equation.equals_target_with_operators(&[Operator::Plus, Operator::Multiply]))
