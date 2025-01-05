@@ -26,8 +26,8 @@ fn parse_input(file_path: &str) -> Vec<Vec<u32>> {
         .collect()
 }
 
-fn score_trailheads(topographical_map: &Vec<Vec<u32>>) -> usize {
-    fn recurse(x: usize, y: usize, topographical_map: &Vec<Vec<u32>>) -> Vec<(usize, usize)> {
+fn score_trailheads(topographical_map: &[Vec<u32>]) -> usize {
+    fn recurse(x: usize, y: usize, topographical_map: &[Vec<u32>]) -> Vec<(usize, usize)> {
         let height = topographical_map.len();
         let width = topographical_map[0].len();
         let current = topographical_map[y][x];
@@ -49,9 +49,9 @@ fn score_trailheads(topographical_map: &Vec<Vec<u32>>) -> usize {
             })
             .filter(|(x, y)| {
                 topographical_map[*y][*x] == current + 1
-            }).map(|(x, y)| {
+            }).flat_map(|(x, y)| {
                 recurse(x, y, topographical_map)
-            }).flatten().collect()
+            }).collect()
     }
     topographical_map.iter().enumerate().map(|(y, row)| {
         row.iter().enumerate().map(|(x, elevation)| {
@@ -63,8 +63,8 @@ fn score_trailheads(topographical_map: &Vec<Vec<u32>>) -> usize {
     }).sum()
 }
 
-fn rate_trailheads(topographical_map: &Vec<Vec<u32>>) -> usize {
-    fn recurse(x: usize, y: usize, topographical_map: &Vec<Vec<u32>>) -> usize {
+fn rate_trailheads(topographical_map: &[Vec<u32>]) -> usize {
+    fn recurse(x: usize, y: usize, topographical_map: &[Vec<u32>]) -> usize {
         let height = topographical_map.len();
         let width = topographical_map[0].len();
         let current = topographical_map[y][x];
@@ -86,8 +86,8 @@ fn rate_trailheads(topographical_map: &Vec<Vec<u32>>) -> usize {
             })
             .filter(|(x, y)| {
                 topographical_map[*y][*x] == current + 1
-            }).map(|(x, y)| {
-                recurse(x, y, topographical_map)
+            }).flat_map(|(x, y)| {
+                vec![recurse(x, y, topographical_map)]
             }).sum()
     }
     topographical_map.iter().enumerate().map(|(y, row)| {
@@ -131,7 +131,7 @@ mod tests {
             vec![0, 1, 3, 2, 9, 8, 0, 1],
             vec![1, 0, 4, 5, 6, 7, 3, 2],
         ];
-        assert_eq!(score_trailheads(&topographical_map), 36);
+        assert_eq!(score_trailheads(&topographical_map[..]), 36);
     }
 
     #[test]
@@ -146,6 +146,6 @@ mod tests {
             vec![0, 1, 3, 2, 9, 8, 0, 1],
             vec![1, 0, 4, 5, 6, 7, 3, 2],
         ];
-        assert_eq!(rate_trailheads(&topographical_map), 81);
+        assert_eq!(rate_trailheads(&topographical_map[..]), 81);
     }
 }
