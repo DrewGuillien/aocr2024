@@ -6,11 +6,11 @@ fn main() {
     let input = parse_input("./src/bin/day12/input.txt");
     let regions = get_regions(&input);
     // Part 1
-    let cost = regions.iter().map(|region| get_cost_to_fence(region.clone())).sum::<usize>();
+    let cost = regions.iter().map(|region| get_cost_to_fence(region)).sum::<usize>();
     println!("The total cost to fence the regions is: {}", cost);
 
     // Part 2
-    let discounted_cost = regions.iter().map(|region| get_discounted_cost_to_fence(region.clone())).sum::<usize>();
+    let discounted_cost = regions.iter().map(|region| get_discounted_cost_to_fence(region)).sum::<usize>();
     println!("The total discounted cost to fence the regions is: {}", discounted_cost);
 }
 
@@ -53,7 +53,7 @@ fn get_regions(input: &Vec<Vec<char>>) -> Vec<HashSet<(usize, usize)>> {
     regions
 }
 
-fn get_cost_to_fence(region: HashSet<(usize, usize)>) -> usize {
+fn get_cost_to_fence(region: &HashSet<(usize, usize)>) -> usize {
     let area = region.len();
     let perimiter: usize = region.iter().map(|(x, y)| {
         vec![
@@ -66,7 +66,7 @@ fn get_cost_to_fence(region: HashSet<(usize, usize)>) -> usize {
     area * perimiter
 }
 
-fn get_discounted_cost_to_fence(region: HashSet<(usize, usize)>) -> usize {
+fn get_discounted_cost_to_fence(region: &HashSet<(usize, usize)>) -> usize {
     let area = region.len();
     // Corner detection. A region will have the same amount of sides as the amount of corners.
     // Map each point to the amount of corners it creates.
@@ -217,13 +217,13 @@ mod tests {
                             (2, 2), (3, 2), (4, 2),
                             (2, 3)
         ].into_iter().collect();
-        let cost_r = get_cost_to_fence(region_r);
+        let cost_r = get_cost_to_fence(&region_r);
         assert_eq!(cost_r, 216, "Cost of region R is not correct");
         let region_i1 = vec![
             (4, 0), (5, 0),
             (4, 1), (5, 1),
         ].into_iter().collect();
-        let cost_i1 = get_cost_to_fence(region_i1);
+        let cost_i1 = get_cost_to_fence(&region_i1);
         assert_eq!(cost_i1, 32, "Cost of region I (1) is not correct");
         let region_c1 = vec![
                                     (6, 0), (7, 0),
@@ -234,7 +234,7 @@ mod tests {
                     (4, 5), (5, 5),
                             (5, 6),
         ].into_iter().collect();
-        let cost_c1 = get_cost_to_fence(region_c1);
+        let cost_c1 = get_cost_to_fence(&region_c1);
         assert_eq!(cost_c1, 392, "Cost of region C (1) is not correct");
         let region_f = vec![
                     (8, 0), (9, 0),
@@ -243,7 +243,7 @@ mod tests {
             (7, 3), (8, 3), (9, 3),
                     (8, 4)
         ].into_iter().collect();
-        let cost_f = get_cost_to_fence(region_f);
+        let cost_f = get_cost_to_fence(&region_f);
         assert_eq!(cost_f, 180, "Cost of region F is not correct");
         let region_v = vec![
             (0, 2), (1, 2),
@@ -252,7 +252,7 @@ mod tests {
             (0, 5), (1, 5),         (3, 5),
             (0, 6), (1, 6),
         ].into_iter().collect();
-        let cost_v = get_cost_to_fence(region_v);
+        let cost_v = get_cost_to_fence(&region_v);
         assert_eq!(cost_v, 260, "Cost of region V is not correct");
         let region_j = vec![
                     (6, 3),
@@ -263,12 +263,12 @@ mod tests {
                     (6, 8),
                     (6, 9),
         ].into_iter().collect();
-        let cost_j = get_cost_to_fence(region_j);
+        let cost_j = get_cost_to_fence(&region_j);
         assert_eq!(cost_j, 220, "Cost of region J is not correct");
         let region_c2 = vec![
             (7, 4)
         ].into_iter().collect();
-        let cost_c2 = get_cost_to_fence(region_c2);
+        let cost_c2 = get_cost_to_fence(&region_c2);
         assert_eq!(cost_c2, 4, "Cost of region C (2) is not correct");
         let region_e = vec![
                             (9, 4),
@@ -278,7 +278,7 @@ mod tests {
             (7, 8), (8, 8), (9, 8),
             (7, 9), (8, 9), (9, 9),
         ].into_iter().collect();
-        let cost_e = get_cost_to_fence(region_e);
+        let cost_e = get_cost_to_fence(&region_e);
         assert_eq!(cost_e, 234, "Cost of region E is not correct");
         let region_i2 = vec![
                     (2, 5),
@@ -287,20 +287,20 @@ mod tests {
             (1, 8), (2, 8), (3, 8),         (5, 8),
                             (3, 9)
         ].into_iter().collect();
-        let cost_i2 = get_cost_to_fence(region_i2);
+        let cost_i2 = get_cost_to_fence(&region_i2);
         assert_eq!(cost_i2, 308, "Cost of region I (2) is not correct");
         let region_m = vec![
             (0, 7),
             (0, 8),
             (0, 9), (1, 9), (2, 9)
         ].into_iter().collect();
-        let cost_m = get_cost_to_fence(region_m);
+        let cost_m = get_cost_to_fence(&region_m);
         assert_eq!(cost_m, 60, "Cost of region M is not correct");
         let region_s = vec![
             (4, 8),
             (4, 9), (5, 9),
         ].into_iter().collect();
-        let cost_s = get_cost_to_fence(region_s);
+        let cost_s = get_cost_to_fence(&region_s);
         assert_eq!(cost_s, 24, "Cost of region S is not correct");
     }
     
@@ -312,13 +312,13 @@ mod tests {
                             (2, 2), (3, 2), (4, 2),
                             (2, 3)
         ].into_iter().collect();
-        let cost_r = get_discounted_cost_to_fence(region_r);
+        let cost_r = get_discounted_cost_to_fence(&region_r);
         assert_eq!(cost_r, 120, "Cost of region R is not correct");
         let region_i1 = vec![
             (4, 0), (5, 0),
             (4, 1), (5, 1),
         ].into_iter().collect();
-        let cost_i1 = get_discounted_cost_to_fence(region_i1);
+        let cost_i1 = get_discounted_cost_to_fence(&region_i1);
         assert_eq!(cost_i1, 16, "Cost of region I (1) is not correct");
         let region_c1 = vec![
                                     (6, 0), (7, 0),
@@ -329,7 +329,7 @@ mod tests {
                     (4, 5), (5, 5),
                             (5, 6),
         ].into_iter().collect();
-        let cost_c1 = get_discounted_cost_to_fence(region_c1);
+        let cost_c1 = get_discounted_cost_to_fence(&region_c1);
         assert_eq!(cost_c1, 308, "Cost of region C (1) is not correct");
         let region_f = vec![
                     (8, 0), (9, 0),
@@ -338,7 +338,7 @@ mod tests {
             (7, 3), (8, 3), (9, 3),
                     (8, 4)
         ].into_iter().collect();
-        let cost_f = get_discounted_cost_to_fence(region_f);
+        let cost_f = get_discounted_cost_to_fence(&region_f);
         assert_eq!(cost_f, 120, "Cost of region F is not correct");
         let region_v = vec![
             (0, 2), (1, 2),
@@ -347,7 +347,7 @@ mod tests {
             (0, 5), (1, 5),         (3, 5),
             (0, 6), (1, 6),
         ].into_iter().collect();
-        let cost_v = get_discounted_cost_to_fence(region_v);
+        let cost_v = get_discounted_cost_to_fence(&region_v);
         assert_eq!(cost_v, 130, "Cost of region V is not correct");
         let region_j = vec![
                     (6, 3),
@@ -358,12 +358,12 @@ mod tests {
                     (6, 8),
                     (6, 9),
         ].into_iter().collect();
-        let cost_j = get_discounted_cost_to_fence(region_j);
+        let cost_j = get_discounted_cost_to_fence(&region_j);
         assert_eq!(cost_j, 132, "Cost of region J is not correct");
         let region_c2 = vec![
             (7, 4)
         ].into_iter().collect();
-        let cost_c2 = get_discounted_cost_to_fence(region_c2);
+        let cost_c2 = get_discounted_cost_to_fence(&region_c2);
         assert_eq!(cost_c2, 4, "Cost of region C (2) is not correct");
         let region_e = vec![
                             (9, 4),
@@ -373,7 +373,7 @@ mod tests {
             (7, 8), (8, 8), (9, 8),
             (7, 9), (8, 9), (9, 9),
         ].into_iter().collect();
-        let cost_e = get_discounted_cost_to_fence(region_e);
+        let cost_e = get_discounted_cost_to_fence(&region_e);
         assert_eq!(cost_e, 104, "Cost of region E is not correct");
         let region_i2 = vec![
                     (2, 5),
@@ -382,20 +382,20 @@ mod tests {
             (1, 8), (2, 8), (3, 8),         (5, 8),
                             (3, 9)
         ].into_iter().collect();
-        let cost_i2 = get_discounted_cost_to_fence(region_i2);
+        let cost_i2 = get_discounted_cost_to_fence(&region_i2);
         assert_eq!(cost_i2, 224, "Cost of region I (2) is not correct");
         let region_m = vec![
             (0, 7),
             (0, 8),
             (0, 9), (1, 9), (2, 9)
         ].into_iter().collect();
-        let cost_m = get_discounted_cost_to_fence(region_m);
+        let cost_m = get_discounted_cost_to_fence(&region_m);
         assert_eq!(cost_m, 30, "Cost of region M is not correct");
         let region_s = vec![
             (4, 8),
             (4, 9), (5, 9),
         ].into_iter().collect();
-        let cost_s = get_discounted_cost_to_fence(region_s);
+        let cost_s = get_discounted_cost_to_fence(&region_s);
         assert_eq!(cost_s, 18, "Cost of region S is not correct");
     }
 }
